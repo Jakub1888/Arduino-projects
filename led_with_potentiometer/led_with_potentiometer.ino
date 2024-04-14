@@ -1,13 +1,12 @@
+const int passiveBuzzer = 9;
 const int readPin = A5;
 
 void setup() {
   pinMode(readPin, INPUT);
-  Serial.begin(9600);
+  pinMode(passiveBuzzer, OUTPUT); 
 }
 
 void loop() {
-  const float calcVal = (5. / 1023.) * (analogRead(readPin));
-  Serial.print(calcVal);
-  Serial.println();
-  delay(500);
+  int value = (analogRead(readPin) / 100) / 2;
+  analogWrite(passiveBuzzer, value);
 }
